@@ -1,0 +1,16 @@
+body {
+    height: 80vh;
+    background-image: url('/assets/imgs/background.jpg');
+    /* background-repeat:no-repeat; */
+}
+
+form{
+    width: 50vw;
+    height: 60vh;
+    margin: 0 auto;
+    margin-top: 15vh;
+}
+
+.space{
+    margin-top: 3vh;
+}
