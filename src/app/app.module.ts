@@ -20,11 +20,13 @@ import { LoginGuard } from './login.guard';
 import { DeviceComponent } from './device/device.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
+import { AddpetComponent } from './addpet/addpet.component';
 
 const ManagerChildRoutes: Routes = [
   { path: 'pet', component: PetComponent },
   { path: '', redirectTo: 'pet', pathMatch: 'full' },
-  { path: 'me', component: MeComponent }
+  { path: 'me', component: MeComponent },
+  { path: 'addpet', component: AddpetComponent }
 ]
 
 const ShowChildRoutes: Routes = [
@@ -35,7 +37,7 @@ const ShowChildRoutes: Routes = [
   { path: 'manager', component: ManagerComponent, children: ManagerChildRoutes },
   { path: 'device', component: DeviceComponent, },
   { path: 'user', component: UserComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent },
 ]
 
 const routes: Routes = [
@@ -62,7 +64,8 @@ const routes: Routes = [
     LogonComponent,
     DeviceComponent,
     AdminComponent,
-    UserComponent
+    UserComponent,
+    AddpetComponent
   ],
   imports: [
     BrowserModule,

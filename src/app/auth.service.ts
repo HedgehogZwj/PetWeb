@@ -3,8 +3,8 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class AuthService {
     isLoggedIn = false;
-    currentUser = 'zwj';
-    identity = '';
+    currentUser = 'zzy';
+    identity = 'admin';
     login() {
         this.isLoggedIn = true;
     }

@@ -45,6 +45,7 @@ export class MeComponent implements OnInit {
               (<HTMLInputElement>document.getElementById('newpassword')).value = '';
               (<HTMLInputElement>document.getElementById('confirmpassword')).value = '';
               this.get();
+              this.exit();
             }
             else {
               alert('修改失败');
@@ -65,7 +66,7 @@ export class MeComponent implements OnInit {
       val.value.forEach(element => {
         if (element.userName == this.userName) {
           this.tel = element.tel;
-          this.add = element.add;
+          this.add = element.address;
         }
       });
     })
