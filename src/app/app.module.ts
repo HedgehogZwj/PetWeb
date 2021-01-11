@@ -15,8 +15,13 @@ import { DataComponent } from './data/data.component';
 import { PetComponent } from './pet/pet.component';
 import { MeComponent } from './me/me.component';
 import { LogonComponent } from './logon/logon.component';
+import { AuthService } from './auth.service';
+import { LoginGuard } from './login.guard';
+import { DeviceComponent } from './device/device.component';
+import { AdminComponent } from './admin/admin.component';
+import { UserComponent } from './user/user.component';
 
-const ManagerRoutes: Routes = [
+const ManagerChildRoutes: Routes = [
   { path: 'pet', component: PetComponent },
   { path: '', redirectTo: 'pet', pathMatch: 'full' },
   { path: 'me', component: MeComponent }
@@ -25,14 +30,17 @@ const ManagerRoutes: Routes = [
 const ShowChildRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'data', component: DataComponent }, 
+  { path: 'data', component: DataComponent },
   { path: 'gps', component: GpsComponent },
-  { path: 'manager', component: ManagerComponent, children: ManagerRoutes }
+  { path: 'manager', component: ManagerComponent, children: ManagerChildRoutes },
+  { path: 'device', component: DeviceComponent, },
+  { path: 'user', component: UserComponent },
+  { path: 'admin', component: AdminComponent }
 ]
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'show', pathMatch: 'full' },
   { path: 'logon', component: LogonComponent },
   {
     path: 'show', component: ShowComponent, children: ShowChildRoutes,
@@ -51,7 +59,10 @@ const routes: Routes = [
     DataComponent,
     PetComponent,
     MeComponent,
-    LogonComponent
+    LogonComponent,
+    DeviceComponent,
+    AdminComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +72,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
   ],
-  providers: [],
+  providers: [AuthService, LoginGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

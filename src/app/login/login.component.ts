@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 //import { AuthService } from '../auth.service';
 
 @Component({
@@ -10,10 +11,31 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private hc: HttpClient, private router: Router) { }
+  baseUrl = 'http://localhost:8000/';
+  constructor(private hc: HttpClient, private router: Router, private AuthService: AuthService) { }
 
   login() {
-    this.router.navigate(['/show']);
+    var userName = (<HTMLInputElement>document.getElementById('userName')).value;
+    var password = (<HTMLInputElement>document.getElementById('password')).value;
+    // this.router.navigate(['/show']);
+    if (userName.length == 0 || password.length == 0) {
+      alert('用户名或密码不能为空');
+      return;
+    }
+    this.hc.post(this.baseUrl + 'login', { userName: userName, password: password }).subscribe((val: any) => {
+      if (val.succ) {
+        this.router.navigate(['/show']);
+        this.AuthService.login();
+        this.AuthService.currentUser = userName;
+        console.log(val.value[0]);
+        this.AuthService.identity = val.value[0].identity;
+        console.log(this.AuthService.identity);
+        return;
+      }
+      else {
+        alert('登陆失败，请检查用户名和密码是否填写正确')
+      }
+    })
   }
 
   ngOnInit(): void {

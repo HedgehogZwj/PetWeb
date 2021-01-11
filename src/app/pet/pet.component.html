@@ -1,20 +1,24 @@
-<div class="card">
-    <div class="card-header" style="font-size: 30px;">
-      Poteto
-    </div>
-    <div class="card-body">
-      <p class="card-text"></p>
-      <p class="card-text"></p>
-      <a href="#" class="btn btn-primary">update</a>
-    </div>
+<div class="card" *ngFor="let pet of petes;let i = index">
+  <div class="card-header" style="font-size: 30px;">
+    <label>{{pet.name}}</label>
   </div>
-  <div class="card">
-    <div class="card-header" style="font-size: 30px;">
-      Cobean
-    </div>
-    <div class="card-body">
-      <p class="card-text"></p>
-      <p class="card-text"></p>
-      <a href="#" class="btn btn-primary">update</a>
-    </div>
+  <div class="card-body">
+    <label for="">年龄</label>
+    <input type="text" id="age{{i}}" class="" placeholder="" required="" autofocus="" value="{{pet.age}}">
+    <label for="">种类</label>
+    <input type="text" id="type{{i}}" class="" placeholder="" required="" autofocus="" value="{{pet.type}}">
+    <label for="">性别</label>
+    <input type="text" id="sex{{i}}" class="" placeholder="" required="" autofocus="" value="{{pet.sex}}">
+    <a class="btn btn-primary" (click)="update(pet.name,i)">update</a>
   </div>
+</div>
+<!-- <div class="card">
+  <div class="card-header" style="font-size: 30px;">
+    Cobean
+  </div>
+  <div class="card-body">
+    <p class="card-text"></p>
+    <p class="card-text"></p>
+    <a href="#" class="btn btn-primary">update</a>
+  </div>
+</div> -->

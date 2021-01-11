@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-show',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ShowComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private router: Router, private AuthService: AuthService) { }
+  userName = '';
+  identify = '';
   ngOnInit(): void {
+    this.userName = this.AuthService.currentUser;
+    this.identify = this.AuthService.identity;
+    console.log(this.AuthService.identity);
+  }
+  logout() {
+    this.router.navigate(['/login']);
+    this.AuthService.logout();
   }
 
 }

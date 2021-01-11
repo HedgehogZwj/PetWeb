@@ -1,3 +1,8 @@
 .card {
     margin-bottom: 5vh;
 }
+input {
+    width: 10vw;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
