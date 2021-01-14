@@ -1,7 +1,7 @@
 <div style="height: 80vh;margin: 8vh auto;" class="col-md-9">
     <input type="text" id="name" class="form-control" placeholder="请输入爱宠名字" required="" autofocus=""
         style="width: 15vw;display: inline-block;">
-    <a class="btn btn-primary" style="margin-left: 3vw;">查看它的位置</a>
-    <a class="btn btn-primary" style="margin-left: 2vw;">一键寻路</a>
+    <a class="btn btn-primary" style="margin-left: 3vw;" (click)="look()">查看它的位置</a>
+    <a class="btn btn-primary" style="margin-left: 2vw;" (click)="search()">一键寻路</a>
     <div id="container" style="margin-top: 2vh;"></div>
 </div>

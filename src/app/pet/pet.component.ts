@@ -12,7 +12,7 @@ import { pet } from './pet';
 })
 export class PetComponent implements OnInit {
   petes: Array<pet>;
-  baseUrl = 'http://localhost:8000/'
+  baseUrl = 'http://192.168.43.17:8000/'
   userName = '';
   constructor(private hc: HttpClient, private authService: AuthService, private router: Router) { }
 

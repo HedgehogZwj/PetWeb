@@ -10,7 +10,7 @@ import { AuthService } from '../auth.service';
 })
 export class AddpetComponent implements OnInit {
 
-  baseUrl = 'http://localhost:8000/'
+  baseUrl = 'http://192.168.43.17:8000/'
   constructor(private hc: HttpClient, private authService: AuthService, private router: Router) { }
   addpet() {
     const name = (<HTMLInputElement>document.getElementById('name')).value;

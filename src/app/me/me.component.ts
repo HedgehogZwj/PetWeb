@@ -11,7 +11,7 @@ export class MeComponent implements OnInit {
   userName: string;
   tel: string;
   add: string;
-  baseUrl = 'http://localhost:8000/';
+  baseUrl = 'http://192.168.43.17:8000/'
   constructor(private authService: AuthService, private hc: HttpClient) { }
 
   updatepage() {
