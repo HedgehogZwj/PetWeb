@@ -4,5 +4,5 @@ export class pet {
     sex: string;
     age: string;
     type: string;
-    character: string;
+    charac: string;
 }

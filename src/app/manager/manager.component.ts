@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-manager',
@@ -7,8 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private hc: HttpClient, private authService: AuthService, private router: Router) { }
   ngOnInit(): void {
   }
 

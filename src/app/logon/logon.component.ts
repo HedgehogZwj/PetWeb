@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LogonComponent implements OnInit {
 
-  baseUrl = 'http://localhost:8000/';
+  baseUrl = 'http://192.168.43.17:8000/'
   constructor(private router: Router, private hc: HttpClient) { }
 
   logon() {

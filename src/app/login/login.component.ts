@@ -11,7 +11,7 @@ import { AuthService } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  baseUrl = 'http://localhost:8000/';
+  baseUrl = 'http://192.168.43.17:8000/'
   constructor(private hc: HttpClient, private router: Router, private AuthService: AuthService) { }
 
   login() {

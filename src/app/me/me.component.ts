@@ -11,7 +11,7 @@ export class MeComponent implements OnInit {
   userName: string;
   tel: string;
   add: string;
-  baseUrl = 'http://localhost:8000/';
+  baseUrl = 'http://192.168.43.17:8000/'
   constructor(private authService: AuthService, private hc: HttpClient) { }
 
   updatepage() {
@@ -45,6 +45,7 @@ export class MeComponent implements OnInit {
               (<HTMLInputElement>document.getElementById('newpassword')).value = '';
               (<HTMLInputElement>document.getElementById('confirmpassword')).value = '';
               this.get();
+              this.exit();
             }
             else {
               alert('修改失败');
@@ -65,7 +66,7 @@ export class MeComponent implements OnInit {
       val.value.forEach(element => {
         if (element.userName == this.userName) {
           this.tel = element.tel;
-          this.add = element.add;
+          this.add = element.address;
         }
       });
     })
