@@ -1,5 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark  fixed-top">
-    <a class="navbar-brand" href="#">宠物管理系统</a>
+<nav class="navbar navbar-expand-md navbar-light fixed-top" style="background-color: #F4A460;">
+    <img src="/assets/imgs/logo.png" alt="" width="90" height="60">
+    <a class="navbar-brand" href="#" style="color: white;">宠物管理系统</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
         aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,17 +9,17 @@
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" [routerLink]="['/show/home']">Home</a>
+                <a class="nav-link" [routerLink]="['/show/home']" style="color: white;">Home</a>
             </li>
         </ul>
     </div>
-    <div style="color: white;">
+    <div style="color: white; margin-right: 3vw;">
         <label for="" *ngIf="identify=='user'">你好，用户</label>
         <label for="" *ngIf="identify=='admin'">你好，管理员</label>
         <label for="">{{userName}}</label>
     </div>
     <div>
-        <button (click)="logout()">退出登录</button>
+        <button class="btn btn-outline-light" (click)="logout()">退出登录</button>
     </div>
 </nav>
 

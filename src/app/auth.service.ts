@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
 export class AuthService {
     isLoggedIn = false;
     currentUser = 'zwj';
-    identity = '';
+    identity = 'user';
     login() {
         this.isLoggedIn = true;
     }
