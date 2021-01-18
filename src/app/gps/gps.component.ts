@@ -20,7 +20,7 @@ export class GpsComponent implements OnInit {
     var b = new point();
     b.x = 116.395; b.y = 39.935; b.name = 'fph';
     var c = new point();
-    c.x = 116.415; c.y = 39.931; c.name = 'ych';
+    c.x = 116.415; c.y = 39.931; c.name = 'BOB';
     this.points.push(a);
     this.points.push(b);
     this.points.push(c);

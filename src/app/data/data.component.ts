@@ -99,7 +99,7 @@ export class DataComponent implements OnInit {
   constructor(private hc: HttpClient, private authService: AuthService, private WebSocket: WebSocketService) { }
 
   ngOnInit(): void {
-    this.WebSocket.createObservableSocket("ws://localhost:8085").subscribe(data => {
+    this.WebSocket.createObservableSocket("ws://192.168.43.17:8085").subscribe(data => {
       // console.log(data);
       let aa = data.split("&&");
       let bb = aa[0].split("=");

@@ -42,7 +42,7 @@ const ShowChildRoutes: Routes = [
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'show', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'logon', component: LogonComponent },
   {
     path: 'show', component: ShowComponent, children: ShowChildRoutes,
