@@ -27,6 +27,7 @@ export class PetComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
     this.refresh();
   }
   update(name, id) {

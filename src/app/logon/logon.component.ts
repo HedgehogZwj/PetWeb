@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Route } from '@angular/compiler/src/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-logon',
@@ -11,13 +12,12 @@ import { Router } from '@angular/router';
 export class LogonComponent implements OnInit {
 
   baseUrl = 'http://192.168.43.17:8000/'
-  constructor(private router: Router, private hc: HttpClient) { }
+  constructor(private router: Router, private hc: HttpClient, private authService: AuthService) { }
 
   logon() {
     var userName = (<HTMLInputElement>document.getElementById('userName')).value;
     var password = (<HTMLInputElement>document.getElementById('password')).value;
     var confirmpassword = (<HTMLInputElement>document.getElementById('confirmpassword')).value;
-    // this.router.navigate(['/login']);
     if (userName.length < 6 || password.length < 6) {
       alert('用户名和密码不得小于6位');
     }
@@ -39,6 +39,7 @@ export class LogonComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
   }
 
 }

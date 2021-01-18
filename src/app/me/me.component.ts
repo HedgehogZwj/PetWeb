@@ -72,6 +72,7 @@ export class MeComponent implements OnInit {
     })
   }
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
     this.userName = this.authService.currentUser;
     this.get();
   }

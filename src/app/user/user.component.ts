@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { people } from './people';
 
 @Component({
@@ -19,7 +20,7 @@ export class UserComponent implements OnInit {
   command: boolean;
   people$ = new Array<people>();
   arr$ = new Array<people>();
-  constructor(private hc: HttpClient) { }
+  constructor(private hc: HttpClient, private authService: AuthService) { }
   last() {
     if (this.page$ == 1) {
       alert('当前页已经是第一页，真的不能再往前了');
@@ -150,6 +151,7 @@ export class UserComponent implements OnInit {
     this.exit();
   }
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
     this.init();
   }
 

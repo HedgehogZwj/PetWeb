@@ -43,6 +43,7 @@ export class AddpetComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
 
   }
 
