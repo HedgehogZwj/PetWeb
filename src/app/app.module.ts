@@ -21,6 +21,7 @@ import { DeviceComponent } from './device/device.component';
 import { AdminComponent } from './admin/admin.component';
 import { UserComponent } from './user/user.component';
 import { AddpetComponent } from './addpet/addpet.component';
+import { NgxEchartsModule } from 'ngx-echarts'
 
 const ManagerChildRoutes: Routes = [
   { path: 'pet', component: PetComponent },
@@ -73,6 +74,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxEchartsModule,
     RouterModule.forRoot(routes),
   ],
   providers: [AuthService, LoginGuard],

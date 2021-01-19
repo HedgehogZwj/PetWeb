@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { AuthService } from '../auth.service';
 import { device } from './device';
 
 @Component({
@@ -19,7 +20,7 @@ export class DeviceComponent implements OnInit {
   command: boolean;
   device$ = new Array<device>();
   arr$ = new Array<device>();
-  constructor(private hc: HttpClient) { }
+  constructor(private hc: HttpClient, private authService: AuthService) { }
   last() {
     if (this.page$ == 1) {
       alert('当前页已经是第一页，真的不能再往前了');
@@ -85,31 +86,34 @@ export class DeviceComponent implements OnInit {
     else document.getElementById('labelhide' + i).className = 'hide';
   }
   query() {
-    this.arr$ = new Array<device>();
     var obj = <HTMLSelectElement>document.getElementById('select');
     var index = obj.selectedIndex;
-    console.log(obj.options[index].value);
     var mark = 4;
     var name = '1';
     var master = '2';
     var ProductName = '3';
     var DeviceName = '4';
-    if (obj.options[index].value == 'ProductName') {
+    if (obj.options[index].value == 'ProductName' && (<HTMLInputElement>document.getElementById('query')).value) {
       ProductName = (<HTMLInputElement>document.getElementById('query')).value;
       mark = 3;
     }
-    else if (obj.options[index].value == 'DeviceName') {
+    else if (obj.options[index].value == 'DeviceName' && (<HTMLInputElement>document.getElementById('query')).value) {
       DeviceName = (<HTMLInputElement>document.getElementById('query')).value;
       mark = 0;
     }
-    else if (obj.options[index].value == 'name') {
+    else if (obj.options[index].value == 'name' && (<HTMLInputElement>document.getElementById('query')).value) {
       name = (<HTMLInputElement>document.getElementById('query')).value;
       mark = 2;
     }
-    else if (obj.options[index].value == 'master') {
+    else if (obj.options[index].value == 'master' && (<HTMLInputElement>document.getElementById('query')).value) {
       master = (<HTMLInputElement>document.getElementById('query')).value;
       mark = 1;
     }
+    else if (obj.options[index].value != 'all') {
+      alert('请填写查询信息');
+      return;
+    }
+    this.arr$ = new Array<device>();
     this.devices$ = <Observable<device>>this.hc.get(this.baseUrl + 'device/' + name + '/' + master + '/' + ProductName + '/' + DeviceName + '/' + mark);
     this.devices$.subscribe((val: any) => {
       this.device$ = val.value;
@@ -170,6 +174,7 @@ export class DeviceComponent implements OnInit {
     this.exit();
   }
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
     this.init();
   }
 }

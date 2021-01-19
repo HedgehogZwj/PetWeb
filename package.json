@@ -19,7 +19,12 @@
     "@angular/platform-browser": "~9.0.7",
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
+<<<<<<< HEAD
     "echarts": "^5.0.0",
+=======
+    "echarts": "^5.0.1",
+    "ngx-echarts": "^6.0.0",
+>>>>>>> 92a8607a78870e49ea5b2d037de45bb258db67f2
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
@@ -30,10 +35,9 @@
     "@angular/cli": "~9.0.7",
     "@angular/compiler-cli": "~9.0.7",
     "@angular/language-service": "~9.0.7",
-    "@types/echarts": "^4.9.3",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
-    "@types/node": "^12.11.1",
+    "@types/node": "^12.19.14",
     "codelyzer": "^5.1.2",
     "jasmine-core": "~3.5.0",
     "jasmine-spec-reporter": "~4.2.1",
