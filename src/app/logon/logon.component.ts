@@ -18,8 +18,14 @@ export class LogonComponent implements OnInit {
     var userName = (<HTMLInputElement>document.getElementById('userName')).value;
     var password = (<HTMLInputElement>document.getElementById('password')).value;
     var confirmpassword = (<HTMLInputElement>document.getElementById('confirmpassword')).value;
-    if (userName.length < 6 || password.length < 6) {
-      alert('用户名和密码不得小于6位');
+    if (userName.length == 0) {
+      alert('用户名不能为空');
+    }
+    else if(password.length ==0) {
+      alert('请输入密码');
+    }
+    else if(password.length < 6) {
+      alert('密码不得小于6位');
     }
     else if (password != confirmpassword) {
       alert('两次输入的密码不一致');

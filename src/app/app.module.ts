@@ -38,17 +38,17 @@ const ShowChildRoutes: Routes = [
   { path: 'manager', component: ManagerComponent, children: ManagerChildRoutes },
   { path: 'device', component: DeviceComponent, },
   { path: 'user', component: UserComponent },
-  { path: 'admin', component: AdminComponent },
+  
 ]
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'show', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'logon', component: LogonComponent },
   {
     path: 'show', component: ShowComponent, children: ShowChildRoutes,
     //canActivate: [LoginGuard]
-  }
+  },{ path: 'admin', component: AdminComponent }
 ]
 
 @NgModule({

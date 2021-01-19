@@ -5,7 +5,7 @@ export class AuthService {
     isLoggedIn = false;
     currentUser = 'wladmin';
     identity = 'admin';
-    ip = '192.168.43.17'
+    ip = '192.168.144.1'
     login() {
         this.isLoggedIn = true;
     }

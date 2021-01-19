@@ -52,16 +52,28 @@ export class UserComponent implements OnInit {
     var userName = (<HTMLInputElement>document.getElementById('userName')).value;
     var password = (<HTMLInputElement>document.getElementById('password')).value;
     var identity = (<HTMLInputElement>document.getElementById('identity')).value;
-    this.hc.post(this.baseUrl + 'user', { userName: userName, password: password, identity: identity }).subscribe((val: any) => {
-      if (val.succ) {
-        alert('添加成功');
-        this.page$ = 1;
-        this.exit();
-      }
-      else {
-        alert('添加失败')
-      }
-    })
+    if (userName.length == 0){
+      alert('用户名不能为空');
+    }
+    else if (password.length == 0){
+      alert('密码不能为空');
+    }
+    else if (password.length <6 ){
+      alert('密码不能少于6位');
+    }
+    else {
+      this.hc.post(this.baseUrl + 'user', { userName: userName, password: password, identity: identity }).subscribe((val: any) => {
+        if (val.succ) {
+          alert('添加成功');
+          this.page$ = 1;
+          this.exit();
+        }
+        else {
+          alert('添加失败')
+        }
+      }) 
+    }
+    
   }
   addpage() {
     this.command = true;
@@ -125,15 +137,21 @@ export class UserComponent implements OnInit {
     var userName = (<HTMLInputElement>document.getElementById('upuserName')).value;
     var password = (<HTMLInputElement>document.getElementById('uppassword')).value;
     var upidentity = (<HTMLInputElement>document.getElementById('upidentity')).value;
-    this.hc.put(this.baseUrl + 'user', { userName: userName, password: password, identity: upidentity }).subscribe((val: any) => {
-      if (val.succ) {
-        alert('修改成功');
-        this.exit();
-      }
-      else {
-        alert('修改失败')
-      }
-    })
+    if (password.length < 6) {
+      alert('密码不能少于6位');
+    }
+    else {
+      this.hc.put(this.baseUrl + 'user', { userName: userName, password: password, identity: upidentity }).subscribe((val: any) => {
+        if (val.succ) {
+          alert('修改成功');
+          this.exit();
+        }
+        else {
+          alert('修改失败')
+        }
+      })
+    }
+    
   }
   secret(i) {
     if (document.getElementById('label' + i).className == 'hide') document.getElementById('label' + i).className = '';

@@ -7,7 +7,6 @@ import 'echarts/extension/bmap/bmap'
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { device } from '../device/device';
-import { element } from 'protractor';
 
 
 
@@ -43,7 +42,7 @@ export class AdminComponent implements OnInit {
     },
     bmap: {
       center: [114.114129, 30.550339],
-      zoom: 6,
+      zoom: 5,
       roam: true,
       mapStyle: {
         styleJson: [{
@@ -331,4 +330,6 @@ export class AdminComponent implements OnInit {
     this.line();
   }
 
+
 }
+

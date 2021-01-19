@@ -1,6 +1,9 @@
-.container{
-    margin-top: 10vh;
-    background-color: blue;
+body{
     width: 100vw;
-    height: 90vh;
+    height: 100%;
+    background-color: #9370DB;
+}
+
+div{
+    background:rgba(255, 255, 255, 0)
 }

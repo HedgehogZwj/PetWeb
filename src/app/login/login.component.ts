@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     var password = (<HTMLInputElement>document.getElementById('password')).value;
     // this.router.navigate(['/show']);
     if (userName.length == 0 || password.length == 0) {
-      alert('用户名或密码不能为空');
+      alert('用户名密码不能为空'); 
       return;
     }
     this.hc.post(this.baseUrl + 'login', { userName: userName, password: password }).subscribe((val: any) => {

@@ -53,16 +53,22 @@ export class DeviceComponent implements OnInit {
     var DeviceName = (<HTMLInputElement>document.getElementById('DeviceName')).value;
     var ProductName = (<HTMLInputElement>document.getElementById('ProductName')).value;
     var master = (<HTMLInputElement>document.getElementById('master')).value;
-    this.hc.post(this.baseUrl + 'device', { name: name, DeviceName: DeviceName, ProductName: ProductName, master: master }).subscribe((val: any) => {
-      if (val.succ) {
-        alert('添加成功');
-        this.page$ = 1;
-        this.exit();
-      }
-      else {
-        alert('添加失败')
-      }
-    })
+    if (DeviceName.length ==0 ) {
+      alert('设备名不能为空');
+    }
+    else {
+      this.hc.post(this.baseUrl + 'device', { name: name, DeviceName: DeviceName, ProductName: ProductName, master: master }).subscribe((val: any) => {
+        if (val.succ) {
+          alert('添加成功');
+          this.page$ = 1;
+          this.exit();
+        }
+        else {
+          alert('添加失败')
+        }
+      })
+    }
+    
   }
   addpage() {
     this.command = true;
@@ -139,8 +145,8 @@ export class DeviceComponent implements OnInit {
   }
   updatepage(DeviceName, ProductName, name, master) {
     this.command = true;
-    (<HTMLInputElement>document.getElementById('upProductName')).value = DeviceName;
-    (<HTMLInputElement>document.getElementById('upDeviceName')).value = ProductName;
+    (<HTMLInputElement>document.getElementById('upProductName')).value = ProductName;
+    (<HTMLInputElement>document.getElementById('upDeviceName')).value = DeviceName;
     (<HTMLInputElement>document.getElementById('upname')).value = name;
     (<HTMLInputElement>document.getElementById('upmaster')).value = master;
     const pages = document.getElementsByClassName('page');
