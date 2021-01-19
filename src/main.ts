@@ -3,7 +3,8 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-
+require('echarts');
+require('echarts/extension/bmap/bmap')
 if (environment.production) {
   enableProdMode();
 }

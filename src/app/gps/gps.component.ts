@@ -1,4 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { pet } from '../pet/pet';
 import { point } from './point';
 declare var BMapGL: any;
 
@@ -9,33 +12,33 @@ declare var BMapGL: any;
 })
 export class GpsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService, private hc: HttpClient) { }
   points: Array<point>;
   me: point;
+  userName;
+  baseUrl = '';
+  petes: Array<pet>;
+  marker;
   ngOnInit(): void {
-    this.points = new Array<point>();
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
+    this.userName = this.authService.currentUser;
     this.me = new point();
-    var a = new point();
-    a.x = 116.404; a.y = 39.915; a.name = 'TOM';
-    var b = new point();
-    b.x = 116.395; b.y = 39.935; b.name = 'fph';
-    var c = new point();
-    c.x = 116.415; c.y = 39.931; c.name = 'BOB';
-    this.points.push(a);
-    this.points.push(b);
-    this.points.push(c);
-    this.me.x = Number(116.404);
-    this.me.y = Number(39.928);
-    // var map = new BMapGL.Map('container');
-    // map.centerAndZoom(new BMapGL.Point(116.404, 39.928), 15);
-    // map.enableScrollWheelZoom(true);
-    // 创建点标记
-    // var me = new BMapGL.Point(116.404, 39.925);
-    // var me = new BMapGL.Marker(me);
-    // // 在地图上添加点标记
-    // map.addOverlay(me);
-
-    this.look();
+    this.me.x = Number(121.47962809);
+    this.me.y = Number(31.23663724);
+    this.points = new Array<point>();
+    this.hc.get(this.baseUrl + 'pet/' + this.userName).subscribe((val: any) => {
+      // console.log(val.value);
+      this.petes = val.value;
+      console.log(this.petes);
+      this.petes.forEach(element => {
+        var p = new point();
+        p.x = this.me.x + Math.random() / 100;
+        p.y = this.me.y + Math.random() / 100;
+        p.name = element.name;
+        this.points.push(p);
+        this.look();
+      });
+    });
   }
   search() {
     var name = (<HTMLInputElement>document.getElementById('name')).value;
@@ -58,27 +61,52 @@ export class GpsComponent implements OnInit {
     if (name) {
       var map = new BMapGL.Map('container');
       var main = new BMapGL.Point(this.me.x, this.me.y);
-      map.addOverlay(new BMapGL.Marker(main));
+      var mainmark = new BMapGL.Marker(main)
+      map.addOverlay(mainmark);
       map.enableScrollWheelZoom(true);
+      this.bind(map, mainmark, new BMapGL.InfoWindow("我的位置", { width: 200, height: 100, title: "Me" }), main);
+      var opts = {
+        width: 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title: "宠物名字", // 信息窗口标题
+      }
+      this.marker = new Array<any>(this.points.length);
       for (let i = 0; i < this.points.length; i++) {
         if (name == this.points[i].name) {
           var point = new BMapGL.Point(this.points[i].x, this.points[i].y);
-          map.centerAndZoom(point, 15);
-          map.addOverlay(new BMapGL.Marker(point));
+          this.marker[i] = new BMapGL.Marker(point);
+          map.addOverlay(this.marker[i]);
+          this.bind(map, this.marker[i], new BMapGL.InfoWindow(this.points[i].name, opts), point);
+          map.centerAndZoom(point, 17);
         }
       }
     }
     else {
       var map = new BMapGL.Map('container');
       var main = new BMapGL.Point(this.me.x, this.me.y);
+      var mainmark = new BMapGL.Marker(main)
       map.centerAndZoom(main, 15);
-      map.addOverlay(new BMapGL.Marker(main));
+      map.addOverlay(mainmark);
       map.enableScrollWheelZoom(true);
+      this.bind(map, mainmark, new BMapGL.InfoWindow("我的位置", { width: 200, height: 100, title: "Me" }), main);
+      var opts = {
+        width: 200,     // 信息窗口宽度
+        height: 100,     // 信息窗口高度
+        title: "宠物名字", // 信息窗口标题
+      }
+      this.marker = new Array<any>(this.points.length);
       for (let i = 0; i < this.points.length; i++) {
-        console.log(this.points[i].x)
         var point = new BMapGL.Point(this.points[i].x, this.points[i].y);
-        map.addOverlay(new BMapGL.Marker(point));
+        this.marker[i] = new BMapGL.Marker(point);
+        map.addOverlay(this.marker[i]);
+        this.bind(map, this.marker[i], new BMapGL.InfoWindow(this.points[i].name, opts), point);
       }
     }
+  }
+  bind(map, marker, message, point) {
+    marker.onclick = (function () {
+      console.log(message.content);
+      map.openInfoWindow(message, point); //开启信息窗口
+    });
   }
 }

@@ -28,7 +28,7 @@ export class AddpetComponent implements OnInit {
       master: master
     }
     if (name.length == 0) {
-      alert('宠物姓名不能为空');
+      alert('宠物名不能为空');
     }
     else {
       this.hc.post(this.baseUrl + 'pet', obj).subscribe((val: any) => {
@@ -43,6 +43,7 @@ export class AddpetComponent implements OnInit {
     }
   }
   ngOnInit(): void {
+    this.baseUrl = 'http://' + this.authService.ip + ':8000/';
 
   }
 

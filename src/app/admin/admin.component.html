@@ -1,16 +1,46 @@
-<div class="container" style="margin-top: 15vh;">
-    <div class="row">
-      <div class="col-sm-4">
-        <div style="height: 40vh;" id="echart2"></div> 
-        <div style="height: 40vh;" id="echart3"></div> 
-      </div>
-      <div class="col-sm-8">
-         <div class="border" style="height: 60vh;" id="echart"></div> 
-      </div>
+<body>
+    <div class="container">
+        <p style="font-size: 30px; text-align: center;">宠物管理系统运维大屏</p>
+        <div class="row">
+          <div class="col-4">
+            <div class="bar" style="height: 46vh;" id="echart"></div>
+            <table class="table table-striped">
+              <thead>
+                    <tr>
+                        <th scope="col">设备名称</th>
+                        <th scope="col">产品名称</th>
+                        <th scope="col">宠物主人</th>
+                    </tr>
+              </thead>  
+            </table>            
+            <div class="bar" style="height: 30vh; overflow:auto;" id="list">
+                <table class="table table-striped">
+                      <tbody>
+                        <tr *ngFor='let device of arr$; let i = index;'>
+                            <td>{{device.DeviceName}}</td>
+                            <td>{{device.ProductName}}</td>
+                            <td>{{device.master}}</td>
+                        </tr>
+                      </tbody>  
+                    
+                </table>
+            </div>
+          </div>
+          <div class="col-8">
+            <div class="bar border border-success" style="height: 50vh;" id="echart2"></div>
+            <div class="row">
+                <div class="col">
+                  <div class="bar" style="height: 35vh;" id="echart3"></div>
+                </div>
+                <div class="col">
+                  <div class="bar" style="height: 40vh;" id="echart4"></div>
+                </div>
+              </div>
+          </div>
+        </div>
     </div>
-  </div>
-<div>
-    
-</div>
+</body>
 
+    
+    
 
