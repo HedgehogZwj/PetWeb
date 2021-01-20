@@ -21,10 +21,10 @@ export class LogonComponent implements OnInit {
     if (userName.length == 0) {
       alert('用户名不能为空');
     }
-    else if(password.length ==0) {
+    else if (password.length == 0) {
       alert('请输入密码');
     }
-    else if(password.length < 6) {
+    else if (password.length < 6) {
       alert('密码不得小于6位');
     }
     else if (password != confirmpassword) {
@@ -38,7 +38,7 @@ export class LogonComponent implements OnInit {
           return;
         }
         else {
-          alert('注册失败');
+          alert('该用户已存在');
         }
       })
     }

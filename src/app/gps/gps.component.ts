@@ -42,10 +42,10 @@ export class GpsComponent implements OnInit {
   }
   search() {
     var name = (<HTMLInputElement>document.getElementById('name')).value;
-    var map = new BMapGL.Map('container');
-    var main = new BMapGL.Point(this.me.x, this.me.y);
-    map.enableScrollWheelZoom(true);
     if (name) {
+      var map = new BMapGL.Map('container');
+      var main = new BMapGL.Point(this.me.x, this.me.y);
+      map.enableScrollWheelZoom(true);
       for (let i = 0; i < this.points.length; i++) {
         if (name == this.points[i].name) {
           var point = new BMapGL.Point(this.points[i].x, this.points[i].y);
@@ -54,6 +54,9 @@ export class GpsComponent implements OnInit {
           break;
         }
       }
+    }
+    else {
+      alert('请输入宠物名字后再寻路')
     }
   }
   look() {

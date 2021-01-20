@@ -38,7 +38,7 @@ const ShowChildRoutes: Routes = [
   { path: 'manager', component: ManagerComponent, children: ManagerChildRoutes },
   { path: 'device', component: DeviceComponent, },
   { path: 'user', component: UserComponent },
-  
+
 ]
 
 const routes: Routes = [
@@ -47,8 +47,8 @@ const routes: Routes = [
   { path: 'logon', component: LogonComponent },
   {
     path: 'show', component: ShowComponent, children: ShowChildRoutes,
-    //canActivate: [LoginGuard]
-  },{ path: 'admin', component: AdminComponent }
+    canActivate: [LoginGuard]
+  }, { path: 'admin', component: AdminComponent }
 ]
 
 @NgModule({

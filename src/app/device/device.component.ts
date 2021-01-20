@@ -53,22 +53,34 @@ export class DeviceComponent implements OnInit {
     var DeviceName = (<HTMLInputElement>document.getElementById('DeviceName')).value;
     var ProductName = (<HTMLInputElement>document.getElementById('ProductName')).value;
     var master = (<HTMLInputElement>document.getElementById('master')).value;
-    if (DeviceName.length ==0 ) {
-      alert('设备名不能为空');
+    if (DeviceName.length < 4 || DeviceName.length > 32) {
+      alert('设备名不合法');
     }
     else {
-      this.hc.post(this.baseUrl + 'device', { name: name, DeviceName: DeviceName, ProductName: ProductName, master: master }).subscribe((val: any) => {
-        if (val.succ) {
-          alert('添加成功');
-          this.page$ = 1;
-          this.exit();
+      let mark = 1;
+      for (let i = 0; i < DeviceName.length; i++) {
+        if (DeviceName[i] != ':' && DeviceName[i] != '-' && DeviceName[i] != '_' && DeviceName[i] != '@' && DeviceName[i] != '.') {
+          if (DeviceName[i] < '0' || (DeviceName[i] > '9' && DeviceName[i] < 'A') || (DeviceName[i] > 'Z' && DeviceName[i] < 'a') || DeviceName[i] > 'z') {
+            alert('设备名不合法');
+            mark = 0;
+            console.log(DeviceName[i])
+          }
         }
-        else {
-          alert('添加失败')
-        }
-      })
+      }
+      if (mark) {
+        this.hc.post(this.baseUrl + 'device', { name: name, DeviceName: DeviceName, ProductName: ProductName, master: master }).subscribe((val: any) => {
+          if (val.succ) {
+            alert('添加成功');
+            this.page$ = 1;
+            this.exit();
+          }
+          else {
+            alert('添加失败')
+          }
+        })
+      }
     }
-    
+
   }
   addpage() {
     this.command = true;

@@ -65,6 +65,7 @@ export class MeComponent implements OnInit {
     this.hc.get(this.baseUrl + 'user/' + this.userName).subscribe((val: any) => {
       val.value.forEach(element => {
         if (element.userName == this.userName) {
+          console.log(element);
           this.tel = element.tel;
           this.add = element.address;
         }

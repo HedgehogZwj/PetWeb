@@ -17,10 +17,10 @@ import { device } from '../device/device';
 })
 export class AdminComponent implements OnInit {
   baseUrl = '';
-  data = [{ name: '浙江省', value: 9 }]
+  data = [{ name: '上海市', value: 9 }]
   constructor(private authService: AuthService, private hc: HttpClient) { }
   geoCoordMap = {
-    '浙江省': [120.15268564, 30.1736802]
+    '上海市': [121.47962809, 31.23663724]
   };
   convertData = function (data) {
     var res = [];
@@ -254,7 +254,7 @@ export class AdminComponent implements OnInit {
     },
     yAxis: {
       type: 'category',
-      data: ['广东省', '上海市', '江苏省', '山东省', '福建省', '浙江省']
+      data: ['广东省', '浙江省', '江苏省', '山东省', '福建省', '上海市']
     },
     series: [
       {
